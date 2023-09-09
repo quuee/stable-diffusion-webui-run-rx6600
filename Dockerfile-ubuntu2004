@@ -1,0 +1,43 @@
+FROM ubuntu:20.04
+
+# Register the ROCM package repository, and install rocm-dev package
+ARG ROCM_VERSION=5.5.3
+ARG AMDGPU_VERSION=5.5.3
+
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends ca-certificates curl libnuma-dev gnupg \
+  && curl -sL https://repo.radeon.com/rocm/rocm.gpg.key | apt-key add - \
+  && printf "deb [arch=amd64] https://repo.radeon.com/rocm/apt/$ROCM_VERSION/ ubuntu main" | tee /etc/apt/sources.list.d/rocm.list \
+  && printf "deb [arch=amd64] https://repo.radeon.com/amdgpu/$AMDGPU_VERSION/ubuntu focal main" | tee /etc/apt/sources.list.d/amdgpu.list \
+  && apt-get update \
+  && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+  sudo \
+  libelf1 \
+  kmod \
+  file \
+  python3 \
+  python3-pip \
+  rocm-dev \
+  rocm-libs \
+  git \
+  build-essential && \
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/*
+
+ARG user=x
+
+COPY sudo-nopasswd /etc/sudoers.d/sudo-nopasswd
+
+RUN useradd --create-home -G sudo,video --shell /bin/bash ${user}
+
+USER ${user}
+WORKDIR /home/${user}
+ENV PATH "${PATH}:/opt/rocm/bin"
+
+RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/rocm5.4.2
+
+RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui
+RUN cd stable-diffusion-webui
+
+
+# Default to a login shell
+CMD ["bash", "-l"]

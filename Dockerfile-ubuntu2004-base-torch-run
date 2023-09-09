@@ -1,0 +1,15 @@
+FROM rocm-ubuntu2004-base-torch:v1.0
+
+ARG user=x
+
+COPY sudo-nopasswd /etc/sudoers.d/sudo-nopasswd
+
+RUN useradd --create-home -G sudo,video --shell /bin/bash ${user}
+
+USER ${user}
+WORKDIR /home/${user}
+ENV PATH "${PATH}:/opt/rocm/bin"
+
+
+# Default to a login shell
+CMD ["bash", "-l"]
