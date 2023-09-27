@@ -214,7 +214,9 @@ bash webui.sh
 https://civitai.com 科学上网
 https://huggingface.co 科学上网
 https://rentry.co/sdmodels 科学上网
-https://www.liblibai.com/ 
+https://arthub.ai 科学上网
+https://www.liblibai.com/ 科学上网
+
 
 #### Checkpoint/大模型/底模型/主模型
 Checkpoint模型是SD能够绘图的基础模型，因此被称为大模型、底模型或者主模型，WebUI上就叫它Stable Diffusion模型。安装完SD软件后，必须搭配主模型才能使用。不同的主模型，其画风和擅长的领域会有侧重。
@@ -265,6 +267,7 @@ PYTORCH_HIP_ALLOC_CONF=garbage_collection_threshold:0.9,max_split_size_mb:512 py
 export COMMANDLINE_ARGS="--medvram --opt-split-attention"
 ```
 ```shell
+source ~/Documents/GithubProjects/stable-diffusion-venv/bin/activate
 bash webui.sh
 ````
 success,done!
