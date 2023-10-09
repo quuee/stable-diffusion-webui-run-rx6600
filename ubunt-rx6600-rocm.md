@@ -85,6 +85,7 @@ sudo amdgpu-install --usecase=hiplibsdk,rocm
 ### 多版本rocm安装
 
 ### 查看版本rocm
+要重启后查看
 ```shell
 apt show rocm-libs -a
 rocminfo  
