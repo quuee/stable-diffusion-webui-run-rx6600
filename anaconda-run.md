@@ -19,4 +19,13 @@ launch.py会调用webui.py完成前端界面的构建以及扩展的加载与处
 ## RDNA2 环境变量
 AMD显卡是 5000 6000 系，添加环境变量：export HSA_OVERRIDE_GFX_VERSION=10.3.0
 
-A卡命令行启动：HSA_OVERRIDE_GFX_VERSION=10.3.0 python3 launch.py --medvram --opt-split-attention
+A卡命令行启动
+```shell
+HSA_OVERRIDE_GFX_VERSION=10.3.0 python3 launch.py --medvram --opt-split-attention
+```
+或者
+```shell
+conda activate sd1
+export HSA_OVERRIDE_GFX_VERSION=10.3.0
+python3 launch.py --medvram --opt-split-attention
+```
