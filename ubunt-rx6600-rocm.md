@@ -93,6 +93,10 @@ lsmod | grep amdgpu
 apt list --installed | grep amdgpu-dkms
 ```
 
+### 查看amd使用状态
+sudo apt install radeontop
+radeontop
+
 ## Running inside Docker
 [amd rocm doc](https://rocm.docs.amd.com/en/latest/deploy/linux/quick_start.html)
 官网说docker运行只需安装amdgpu-dkms

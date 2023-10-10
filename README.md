@@ -269,7 +269,14 @@ export COMMANDLINE_ARGS="--medvram --opt-split-attention"
 ```shell
 source ~/Documents/GithubProjects/stable-diffusion-venv/bin/activate
 bash webui.sh
-````
+```
 success,done!
 
 [启动时优化参数解释](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Optimizations)
+
+
+## 使用anaconda跑stable-diffusion-webui
+[anaconda环境](./anaconda-run.md)
+
+# vist-fast-fine-tuning
+[vist-fast-fine-tuning](./vits.md)
